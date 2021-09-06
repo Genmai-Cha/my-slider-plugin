@@ -6,12 +6,18 @@ Version: Ver.1.0
 Author: 玄米
 */
 
+$now_post_id = get_the_ID();
+function title_list_func($now_post_id){
+    return get_the_title();
+}
+add_shortcode('thetitle','title_list_func');
+
 // 1.メニュー作成用のコードの関数をつくる
 function my_slider_menu(){
     add_menu_page("テスト設定画面","My Slider", "manage_options","setting");
     add_submenu_page( "setting", "ひみつ", "scret", "manage_options", "setting", 'slider_setting_page'); 
 }
-//2.管理画面に追加するフック
+//2.管理画面に追加するフック(読み込むタイミング、何の関数)
 add_action('admin_menu','my_slider_menu');
 
 //3.メニューのhtmlを表示する関数
